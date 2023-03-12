@@ -1,0 +1,20 @@
+nav {
+    height: 10vh;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #141e3057;
+    backdrop-filter: blur(12px);
+    ul {
+        display: flex;
+        list-style: none;
+        a {
+            text-decoration: none;
+            color: white;
+            font-size: 18px;
+        }
+        li {
+            padding: 5px;
+        }
+    }
+}
