@@ -1,8 +1,20 @@
 @import "./navbar";
+@import "./footer";
 @import "./slideshow";
 @import "./slider";
 @import "./card";
 @import "./utilites";
+@import "./searchbar";
+
+:root {
+  --base-clr: #1c2025;
+  --accent-clr: #262b31;
+  --primary-clr: #0060d8;
+  --accent-shadow: #262b31b6;
+  --primary-shadow: #0061d8a1;
+  --base-shadow: #1c2025b0;
+  --border-radius: 1rem;
+}
 
 * {
   margin: 0;
@@ -11,11 +23,22 @@
 }
 
 html {
-    direction: rtl;
+  direction: rtl;
 }
 
 body {
-  background: #141e30;
-  background: -webkit-linear-gradient(to top, #141e30, #243b55);
-  background: linear-gradient(to top, #141e30, #243b55);
+  background-color: var(--base-clr);
+  color: white;
+}
+
+main {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.container {
+  width: 90%;
+  height: 60vh;
 }

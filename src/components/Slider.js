@@ -1,14 +1,17 @@
-import React from 'react'
-import Card from './Card';
+import React from "react";
+import Card from "./Card";
 
-const Slider = ({data}) => {
+const Slider = ({ data, heading }) => {
   return (
-    <div className='slider'>{data.map((card => {
-        return (
-            <Card/>
-        )
-    }))}</div>
-  )
-}
+    <section className="container">
+      <h1>{heading}</h1>
+      <div className="slider">
+        {data.map((card, i) => {
+          return <Card imgSrc={card ? card.poster_path : null} />;
+        })}
+      </div>
+    </section>
+  );
+};
 
-export default Slider
+export default Slider;

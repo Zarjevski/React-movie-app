@@ -1,0 +1,11 @@
+footer {
+    background-color: var(--accent-clr);
+    box-shadow: 0 8px 12px var(--accent-clr);
+    height: 5vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 12px;
+    box-shadow: 0 -2px 12px var(--accent-shadow);
+}

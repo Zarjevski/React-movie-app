@@ -1,8 +1,13 @@
 import React from 'react'
+import { getPoster } from '../api/TMDB'
 
-const Card = () => {
+const Card = ({imgSrc}) => {
+  const poster = imgSrc? getPoster(imgSrc) : null
+  console.log(poster);
   return (
-    <div className='card'>Card</div>
+    <div className='card'>
+      <img src={poster} alt="תמונה"/>
+    </div>
   )
 }
 

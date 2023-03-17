@@ -1,18 +1,41 @@
 import React from "react";
 import Slideshow from "../components/Slideshow";
 import Slider from "../components/Slider";
-import { useTrading } from "../api/TMDBapi";
+import { useTrading, useInTheater, useNew } from "../api/TMDB";
 import Spinner from "../components/Spinner";
 
+
+const Trading = () => {
+  const {data,isLoading,error} = useTrading()
+  return (
+    isLoading ? <Spinner/> : error ? <h1>אירע שגיאה.</h1> :
+    <Slider data={data} heading={"חם עכשיו"}/>
+  )
+}
+
+const Theater = () => {
+  const {data,isLoading,error} = useInTheater()
+  return (
+    isLoading ? <Spinner/> : error ? <h1>אירע שגיאה.</h1> :
+    <Slider data={data} heading={"בקולנוע"}/>
+  )
+}
+
+const New = () => {
+  const {data,isLoading,error} = useNew()
+  return (
+    isLoading ? <Spinner/> : error ? <h1>אירע שגיאה.</h1> :
+    <Slider data={data} heading={"חדשים"}/>
+  )
+}
+
 const Home = () => {
-    // const {data,error,isLoading} = useTrading()
-    // console.log(data,error,isLoading);
-  const exampleArray = [1, 2, 3, 4, 5, 6, 7];
   return (
     <main>
       <Slideshow />
-      <Slider data={exampleArray} />
-      <Spinner/>
+      <Trading/>
+      <Theater/>
+      <New/>
     </main>
   );
 };

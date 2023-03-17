@@ -3,7 +3,8 @@ nav {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    background-color: #141e3057;
+    background-color: var(--accent-clr);
+    box-shadow: 0 0 14px var(--accent-shadow);
     backdrop-filter: blur(12px);
     ul {
         display: flex;
@@ -11,9 +12,7 @@ nav {
         a {
             text-decoration: none;
             color: white;
-            font-size: 18px;
-        }
-        li {
+            font-size: 24px;
             padding: 5px;
         }
     }

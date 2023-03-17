@@ -1,14 +1,18 @@
 import React from "react";
+import SearchBar from './SearchBar'
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
     <nav>
-      <div>logo</div>
+      <div><h1>טריילרים</h1></div>
       <ul>
-        <li><a href="">סרטים</a></li>
-        <li><a href="">סדרות</a></li>
-        <li><a href="">קטגוריות</a></li>
+        <Link>בית</Link>
+        <Link>סרטים</Link>
+        <Link>סדרות</Link>
+        <Link>חנות</Link>
       </ul>
+      <SearchBar/>
     </nav>
   );
 };
