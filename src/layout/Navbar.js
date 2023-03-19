@@ -1,5 +1,5 @@
 import React from "react";
-import SearchBar from './SearchBar'
+import SearchBar from '../components/SearchBar'
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
@@ -7,7 +7,7 @@ const Navbar = () => {
     <nav>
       <div><h1>טריילרים</h1></div>
       <ul>
-        <Link>בית</Link>
+        <Link to={'/'}>בית</Link>
         <Link>סרטים</Link>
         <Link>סדרות</Link>
         <Link>חנות</Link>

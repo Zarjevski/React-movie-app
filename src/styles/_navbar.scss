@@ -4,8 +4,9 @@ nav {
     justify-content: space-around;
     align-items: center;
     background-color: var(--accent-clr);
-    box-shadow: 0 0 14px var(--accent-shadow);
+    box-shadow: 0 4px 14px var(--accent-shadow);
     backdrop-filter: blur(12px);
+    z-index: 999;
     ul {
         display: flex;
         list-style: none;

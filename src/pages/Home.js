@@ -1,23 +1,23 @@
 import React from "react";
 import Slideshow from "../components/Slideshow";
 import Slider from "../components/Slider";
-import { useTrading, useInTheater, useNew } from "../api/TMDB";
+import { usePopular, useComingSoon, useNew } from "../api/TMDB";
 import Spinner from "../components/Spinner";
 
 
-const Trading = () => {
-  const {data,isLoading,error} = useTrading()
+const Popular = () => {
+  const {data,isLoading,error} = usePopular();
   return (
     isLoading ? <Spinner/> : error ? <h1>אירע שגיאה.</h1> :
-    <Slider data={data} heading={"חם עכשיו"}/>
+    <Slider data={data[0].results} heading={"פופולרים"}/>
   )
 }
 
-const Theater = () => {
-  const {data,isLoading,error} = useInTheater()
+const ComingSoon = () => {
+  const {data,isLoading,error} = useComingSoon()
   return (
     isLoading ? <Spinner/> : error ? <h1>אירע שגיאה.</h1> :
-    <Slider data={data} heading={"בקולנוע"}/>
+    <Slider data={data[0].results} heading={"בקולנוע"}/>
   )
 }
 
@@ -33,8 +33,8 @@ const Home = () => {
   return (
     <main>
       <Slideshow />
-      <Trading/>
-      <Theater/>
+      <Popular/>
+      <ComingSoon/>
       <New/>
     </main>
   );

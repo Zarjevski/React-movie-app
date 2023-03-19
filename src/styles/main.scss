@@ -2,18 +2,19 @@
 @import "./footer";
 @import "./slideshow";
 @import "./slider";
-@import "./card";
 @import "./utilites";
 @import "./searchbar";
+@import "./movie_page";
 
 :root {
   --base-clr: #1c2025;
   --accent-clr: #262b31;
   --primary-clr: #0060d8;
-  --accent-shadow: #262b31b6;
+  --accent-shadow: #14161afb;
   --primary-shadow: #0061d8a1;
   --base-shadow: #1c2025b0;
   --border-radius: 1rem;
+  --white-text: rgb(226, 223, 223);
 }
 
 * {
@@ -28,7 +29,7 @@ html {
 
 body {
   background-color: var(--base-clr);
-  color: white;
+  color: var(--white-text);
 }
 
 main {
@@ -38,7 +39,9 @@ main {
   align-items: center;
 }
 
-.container {
-  width: 90%;
-  height: 60vh;
+section {
+  height: 100vh;
 }
+
+
+

@@ -5,6 +5,12 @@
     animation-direction: normal;
 }
 
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 @keyframes spinner {
     0% {
         transform: rotate(0);

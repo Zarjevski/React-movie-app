@@ -3,14 +3,21 @@ import Card from "./Card";
 
 const Slider = ({ data, heading }) => {
   return (
-    <section className="container">
+    <div className="container">
       <h1>{heading}</h1>
       <div className="slider">
         {data.map((card, i) => {
-          return <Card imgSrc={card ? card.poster_path : null} />;
+          return (
+            <Card
+              imgSrc={card ? card.poster_path : null}
+              id={card ? card.id : null}
+              title={card ? card.title : null}
+              key={i}
+            />
+          );
         })}
       </div>
-    </section>
+    </div>
   );
 };
 

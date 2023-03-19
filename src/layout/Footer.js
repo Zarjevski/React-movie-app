@@ -3,7 +3,7 @@ import React from 'react'
 const Footer = () => {
   return (
     <footer>
-      <h3>footer</h3>
+      <h3>כל הזכויות שמורות | טריילרים &copy;</h3>
     </footer>
   )
 }
