@@ -8,9 +8,9 @@ const Navbar = () => {
       <div><h1>טריילרים</h1></div>
       <ul>
         <Link to={'/'}>בית</Link>
-        <Link>סרטים</Link>
-        <Link>סדרות</Link>
-        <Link>חנות</Link>
+        <Link to={'/movies'}>סרטים</Link>
+        <Link to={'/tv'}>סדרות</Link>
+        <Link to={'/shop'}>חנות</Link>
       </ul>
       <SearchBar/>
     </nav>

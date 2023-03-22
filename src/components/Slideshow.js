@@ -1,39 +1,80 @@
-import React from "react";
-import { usePopular, getPoster } from "../api/TMDB";
+import React, { useEffect, useState } from "react";
+import { usePopular, getPoster, getMedia } from "../api/TMDB";
 import { useNavigate } from "react-router-dom";
+import Skeleton from "./Skeleton";
+import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
 
 const Slideshow = () => {
-  const navigate = useNavigate()
-  const [movieIndex,setMovieIndex] = React.useState(0)
+  const navigate = useNavigate();
+  const [movieIndex, setMovieIndex] = useState(0);
   const { data, isLoading, error } = usePopular();
+  // auto increment index
+  useEffect(() => {
+    setTimeout(() => {
+      if (movieIndex === 2) {
+        setMovieIndex(0);
+      } else {
+        setMovieIndex(movieIndex + 1);
+      }
+    }, 7000);
+  }, [movieIndex]);
+  // button functions
   const buttonFunctions = {
-    increase: (movieIndex) => {
-      if (movieIndex === 3) {
-        setMovieIndex(0)
+    increase: () => {
+      if (movieIndex === 2) {
+        setMovieIndex(0);
+      } else {
+        setMovieIndex(movieIndex + 1);
+        console.log(movieIndex);
       }
-      setMovieIndex(movieIndex + 1)
     },
-    decrease: (movieIndex)=> {
-      if(movieIndex === 0){
-        setMovieIndex(3)
+    decrease: () => {
+      if (movieIndex === 0) {
+        setMovieIndex(2);
+      } else {
+        setMovieIndex(movieIndex - 1);
       }
-      setMovieIndex(movieIndex - 1)
-    }
-  }
+    },
+    openModal: () => {
+      console.log("open modal");
+    },
+  };
   const smallArray = data ? data[0].results.slice(0, 3) : null;
-  console.log(smallArray);
-  const image = smallArray? getPoster(smallArray[movieIndex].backdrop_path) : null;
-  const movieId = smallArray ?smallArray[movieIndex].id : null;
+  const movieMedia = smallArray ? getMedia(smallArray[movieIndex].id) : null
+  const image = smallArray
+    ? getPoster(smallArray[movieIndex].backdrop_path)
+    : null;
+  const movieId = smallArray ? smallArray[movieIndex].id : null;
+  // return jsx
   return (
     <div className="slideshow">
-      <div style={{ backgroundImage: `url(${image})` }} className="image-container">
-        <button>צפו עכשיו</button>
-        <button onClick={()=> navigate(`/movie/${movieId}`)}>ראו עוד</button>
-      </div>
-      <div className="overlay">
-        <button onClick={()=> buttonFunctions.increase()}></button>
-        <button onClick={()=> buttonFunctions.decrease()}></button>
-      </div>
+      {isLoading ? (
+        <Skeleton height={"100%"} />
+      ) : error ? (
+        <h1>there is an error</h1>
+      ) : (
+        <>
+          <div
+            style={{ backgroundImage: `url(${image})` }}
+            className="image-container"
+          >
+            <button onClick={() => buttonFunctions.openModal()}>
+              צפו עכשיו
+            </button>
+            <button onClick={() => navigate(`/movie/${movieId}`)}>
+              ראו עוד
+            </button>
+          </div>
+          <div className="slideshow-overlay">
+            <button onClick={() => buttonFunctions.increase()}>
+              <AiOutlineRight />
+            </button>
+            <button onClick={() => buttonFunctions.decrease()}>
+              <AiOutlineLeft />
+            </button>
+          </div>{" "}
+        </>
+      )}
     </div>
   );
 };

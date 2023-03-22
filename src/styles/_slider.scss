@@ -1,22 +1,63 @@
 .container {
-  height: 50vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+  height: 60vh;
+  h1 {
+    padding:  12px 12px 12px 0;
+    font-size: 2.5rem;
+  }
 }
 
 .slider {
-  height: 90%;
   display: flex;
+  height: 100%;
+  transition: all 1s ease-in-out;
+  z-index: 2;
+}
+.overlay {
+  position: absolute;
+  width: 100%;
+  height: 60vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  button {
+    // background: rgba(28, 32, 37, 0.692);
+    background: none;
+    height: auto;
+    border: none;
+    padding: 5px;
+    z-index: 3;
+    svg {
+      transition: all 0.3s linear;
+      height: 3em;
+      width: 3em;
+      color: rgb(230, 230, 230);
+      filter: drop-shadow(0 0 15px black);
+      &:hover {
+        color: var(--primary-clr);
+      }
+    }
+  }
 }
 
 .card {
-  width: 25vw;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  flex: 0 0 20%;
+  max-width: 20%;
+  height: 80%;
+  z-index: 3;
+  text-align: center;
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 .card img {
-  width: 70%;
   height: 100%;
+  width: 90%;
 }

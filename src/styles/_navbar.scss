@@ -7,6 +7,7 @@ nav {
     box-shadow: 0 4px 14px var(--accent-shadow);
     backdrop-filter: blur(12px);
     z-index: 999;
+    position: relative;
     ul {
         display: flex;
         list-style: none;
@@ -14,7 +15,10 @@ nav {
             text-decoration: none;
             color: white;
             font-size: 24px;
-            padding: 5px;
+            padding: 12px;
+            &:hover {
+                color: var(--primary-clr);
+              }
         }
     }
 }

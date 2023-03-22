@@ -5,11 +5,13 @@
 @import "./utilites";
 @import "./searchbar";
 @import "./movie_page";
+@import './modal';
+@import './grid';
 
 :root {
   --base-clr: #1c2025;
   --accent-clr: #262b31;
-  --primary-clr: #0060d8;
+  --primary-clr: #0EB5F5;
   --accent-shadow: #14161afb;
   --primary-shadow: #0061d8a1;
   --base-shadow: #1c2025b0;
@@ -30,6 +32,8 @@ html {
 body {
   background-color: var(--base-clr);
   color: var(--white-text);
+  overflow-x: hidden;
+  font-family: sans-serif;
 }
 
 main {
@@ -43,5 +47,6 @@ section {
   height: 100vh;
 }
 
-
-
+button:hover {
+  cursor: pointer;
+}

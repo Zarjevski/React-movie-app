@@ -1,7 +1,7 @@
 import React from "react";
 import Slideshow from "../components/Slideshow";
 import Slider from "../components/Slider";
-import { usePopular, useComingSoon, useNew } from "../api/TMDB";
+import { usePopular, useComingSoon, useUpComing } from "../api/TMDB";
 import Spinner from "../components/Spinner";
 
 
@@ -21,11 +21,12 @@ const ComingSoon = () => {
   )
 }
 
-const New = () => {
-  const {data,isLoading,error} = useNew()
+const UpComing = () => {
+  const {data,isLoading,error} = useUpComing()
+  console.log(data);
   return (
     isLoading ? <Spinner/> : error ? <h1>אירע שגיאה.</h1> :
-    <Slider data={data} heading={"חדשים"}/>
+    <Slider data={data[0].results} heading={"חדשים"}/>
   )
 }
 
@@ -35,7 +36,7 @@ const Home = () => {
       <Slideshow />
       <Popular/>
       <ComingSoon/>
-      <New/>
+      <UpComing/>
     </main>
   );
 };

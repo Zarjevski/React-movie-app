@@ -1,21 +1,38 @@
 .spinner {
-    animation-name: spinner;
-    animation-iteration-count: infinite;
-    animation-duration: 4s;
-    animation-direction: normal;
+  animation-name: spinner;
+  animation-iteration-count: infinite;
+  animation-duration: 4s;
+  animation-direction: normal;
 }
 
 .center {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.skeleton {
+  background: #e5e5e5;
+  background: linear-gradient(
+    120deg,
+    #e5e5e5 30%,
+    #ffffff 38%,
+    #ffffff 40%,
+    #e5e5e5 48%
+  );
 }
 
 @keyframes spinner {
-    0% {
-        transform: rotate(0);
-    }
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes load {
     100% {
-        transform: rotate(360deg);
+        background-position: -100% 0;
     }
 }
