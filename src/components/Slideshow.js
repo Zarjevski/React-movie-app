@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { usePopular, getPoster, getMedia } from "../api/TMDB";
+import { usePopular, getPoster, useGetMedia } from "../api/TMDB";
 import { useNavigate } from "react-router-dom";
 import Skeleton from "./Skeleton";
 import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
@@ -40,7 +40,7 @@ const Slideshow = () => {
     },
   };
   const smallArray = data ? data[0].results.slice(0, 3) : null;
-  const movieMedia = smallArray ? getMedia(smallArray[movieIndex].id) : null
+  // const movieMedia =  useGetMedia(smallArray[movieIndex].id) 
   const image = smallArray
     ? getPoster(smallArray[movieIndex].backdrop_path)
     : null;
@@ -49,7 +49,7 @@ const Slideshow = () => {
   return (
     <div className="slideshow">
       {isLoading ? (
-        <Skeleton height={"100%"} />
+        <Skeleton height={"100%"} width={"100%"} />
       ) : error ? (
         <h1>there is an error</h1>
       ) : (

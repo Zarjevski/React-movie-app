@@ -12,7 +12,6 @@
     font-size: 2.5rem;
   }
 }
-
 .slider {
   display: flex;
   height: 100%;
@@ -54,6 +53,12 @@
   text-align: center;
   &:hover {
     cursor: pointer;
+    h3 {
+      color: var(--primary-clr);
+    }
+  }
+  h3 {
+    transition: all 0.2s ease-in;
   }
 }
 

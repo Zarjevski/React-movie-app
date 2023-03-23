@@ -23,7 +23,6 @@ const ComingSoon = () => {
 
 const UpComing = () => {
   const {data,isLoading,error} = useUpComing()
-  console.log(data);
   return (
     isLoading ? <Spinner/> : error ? <h1>אירע שגיאה.</h1> :
     <Slider data={data[0].results} heading={"חדשים"}/>
@@ -33,10 +32,12 @@ const UpComing = () => {
 const Home = () => {
   return (
     <main>
+      <div className="home-wrapper">
       <Slideshow />
       <Popular/>
       <ComingSoon/>
       <UpComing/>
+      </div>
     </main>
   );
 };

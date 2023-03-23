@@ -9,7 +9,7 @@ const Card = ({id, imgSrc, title}) => {
   return (
     <div className="card" onClick={() => navigate(`/movie/${id}`)}>
       <img src={img} alt="תמונה" />
-      <h4>{title}</h4>
+      <h3>{title}</h3>
     </div>
   );
 };

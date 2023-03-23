@@ -68,7 +68,13 @@ export const getPoster = (poster_id) => {
   return path;
 };
 
-export const getMedia = async(id) => {
-  const response = await axiosClient.get(`/movie/${id}/images`)
-  return [response]
+export const useGetMedia = (id) => {
+  return useQuery('media', async()=>{
+    try {
+      const [data,isLoading,error] = await axiosClient.get(`/movie/${id}/images`)
+      return [data,isLoading,error]
+    } catch (error) {
+      console.log(error);
+    }
+  })
 }
