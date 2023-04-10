@@ -1,66 +1,52 @@
-import axiosClient from "./axios";
-import { useQuery, QueryClient } from "react-query";
+import axiosClient from "./axiosClient";
 
-export const queryClient = new QueryClient();
-
-export const usePopular = () => {
-  return useQuery("trading", async () => {
-    try {
-      const { data, isLoading, error } = await axiosClient.get(
-        "/movie/popular"
-      );
-      if (error) {
-        console.log(error);
-      }
-      return [data, error, isLoading];
-    } catch (error) {
-      console.error(error);
-    }
-  });
+export const getData = async (path, page = 1) => {
+  try {
+    const response = await axiosClient.get(path, { params: { page } });
+    const data = await response.data.results;
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
 };
 
-export const useComingSoon = () => {
-  return useQuery("comingSoon", async () => {
-    try {
-      const { data, isLoading, error } = await axiosClient.get(
-        "/movie/upcoming"
-      );
-      if (error) {
-        console.log(error);
-      }
-      return [data, error, isLoading];
-    } catch (error) {
-      console.error(error);
-    }
-  });
+export const getById = async (type, id) => {
+  try {
+    const response = await axiosClient.get(`/${type}/${id}`);
+    const data = await response.data;
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
 };
 
-export const useUpComing = () => {
-  return useQuery("new", async () => {
-    try {
-      const { data, isLoading, error } = await axiosClient.get("/movie/upcoming");
-      if (error) {
-        console.log(error);
-      }
-      return [data, error, isLoading];
-    } catch (error) {
-      console.error(error);
-    }
-  });
+export const getSimilar = async (type, id) => {
+  try {
+    const response = await axiosClient.get(`/${type}/${id}/similar`);
+    const data = await response.data.results;
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
 };
 
-export const useMovieById = (id) => {
-  return useQuery("movie", async () => {
-    try {
-      const { data, error, isLoading } = await axiosClient.get(`/movie/${id}`);
-      if (error) {
-        console.log(error);
-      }
-      return [data, error, isLoading];
-    } catch (error) {
-      console.error(error);
-    }
-  });
+export const getCast = async (type, id) => {
+  try {
+    const response = await axiosClient.get(`/${type}/${id}/credits`);
+    return response.data.cast;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getMedia = async (id) => {
+  try {
+    const response = await axiosClient.get(`/movie/${id}/images`);
+    const data = await response.data.results;
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 export const getPoster = (poster_id) => {
@@ -68,13 +54,17 @@ export const getPoster = (poster_id) => {
   return path;
 };
 
-export const useGetMedia = (id) => {
-  return useQuery('media', async()=>{
-    try {
-      const [data,isLoading,error] = await axiosClient.get(`/movie/${id}/images`)
-      return [data,isLoading,error]
-    } catch (error) {
-      console.log(error);
+export const getVideos = async (id, type) => {
+  try {
+    const response = await axiosClient.get(`/${type}/${id}/videos`);
+    const results = await response.data.results;
+    console.log(response.data);
+    if (results && results[0].site === "YouTube") {
+      return `https://www.youtube.com/embed/${results[0].key}`;
+    } else if (!results) {
+      console.log(results);
     }
-  })
-}
+  } catch (error) {
+    console.error(error);
+  }
+};

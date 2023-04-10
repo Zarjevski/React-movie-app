@@ -1,43 +1,53 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Slideshow from "../components/Slideshow";
 import Slider from "../components/Slider";
-import { usePopular, useComingSoon, useUpComing } from "../api/TMDB";
+import { getData } from "../api/TMDB";
 import Spinner from "../components/Spinner";
 
-
-const Popular = () => {
-  const {data,isLoading,error} = usePopular();
-  return (
-    isLoading ? <Spinner/> : error ? <h1>אירע שגיאה.</h1> :
-    <Slider data={data[0].results} heading={"פופולרים"}/>
-  )
-}
-
-const ComingSoon = () => {
-  const {data,isLoading,error} = useComingSoon()
-  return (
-    isLoading ? <Spinner/> : error ? <h1>אירע שגיאה.</h1> :
-    <Slider data={data[0].results} heading={"בקולנוע"}/>
-  )
-}
-
-const UpComing = () => {
-  const {data,isLoading,error} = useUpComing()
-  return (
-    isLoading ? <Spinner/> : error ? <h1>אירע שגיאה.</h1> :
-    <Slider data={data[0].results} heading={"חדשים"}/>
-  )
-}
-
 const Home = () => {
+  const [isLoading, setIsLoading] = useState(true);
+  const [popularMovies, setPopularMovies] = useState([]);
+  const [topRatedMovies, setTopRatedMovies] = useState([]);
+  const [popularTv, setPopularTv] = useState([]);
+  const fetchData = async () => {
+    try {
+      setPopularMovies(await getData("/movie/upcoming"));
+      setPopularTv(await getData("/tv/popular"));
+      setTopRatedMovies(await getData("/tv/top_rated"));
+      setIsLoading(false);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    fetchData();
+  }, []);
   return (
     <main>
-      <div className="home-wrapper">
-      <Slideshow />
-      <Popular/>
-      <ComingSoon/>
-      <UpComing/>
-      </div>
+      {isLoading ? (
+        <Spinner />
+      ) : (
+        <div className="wrapper">
+          <Slideshow />
+          <Slider
+            data={popularMovies}
+            heading={"סרטים חדשים"}
+            path={"/movie/popular"}
+          />
+          <Slider
+            data={popularTv}
+            heading={"סדרות פופולריות"}
+            path={"/tv/popular"}
+            type={"tv"}
+          />
+          <Slider
+            data={topRatedMovies}
+            heading={"המדורגים ביותר"}
+            path={"/movie/top_rated"}
+            type={'tv'}
+          />
+        </div>
+      )}
     </main>
   );
 };

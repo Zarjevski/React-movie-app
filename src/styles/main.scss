@@ -4,9 +4,8 @@
 @import "./slider";
 @import "./utilites";
 @import "./searchbar";
-@import "./movie_page";
+@import "./pages";
 @import './modal';
-@import './grid';
 
 :root {
   --base-clr: #1c2025;
@@ -17,6 +16,9 @@
   --base-shadow: #1c2025b0;
   --border-radius: 1rem;
   --white-text: rgb(226, 223, 223);
+  --box-shadow: 0 0 12px 4px var(--accent-shadow);
+  --transition:  all 0.3s linear;
+
 }
 
 * {
@@ -27,6 +29,7 @@
 
 html {
   direction: rtl;
+  scroll-behavior: smooth;
 }
 
 body {
@@ -34,6 +37,7 @@ body {
   color: var(--white-text);
   overflow-x: hidden !important;
   font-family: sans-serif;
+  text-shadow: 0 0 12px var(--accent-shadow);
 }
 
 main {
@@ -41,14 +45,14 @@ main {
   width: 100vw;
   display: flex;
   justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
-.home-wrapper {
-  width: 80%;
-}
+
 
 section {
-  height: 100vh;
+  min-height: 100vh;
 }
 
 button {

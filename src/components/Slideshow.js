@@ -1,17 +1,36 @@
 import React, { useEffect, useState } from "react";
-import { usePopular, getPoster, useGetMedia } from "../api/TMDB";
+import { getData, getPoster, getMedia } from "../api/TMDB";
 import { useNavigate } from "react-router-dom";
 import Skeleton from "./Skeleton";
 import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
 
 const Slideshow = () => {
-  const navigate = useNavigate();
+  // constants
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(false);
   const [movieIndex, setMovieIndex] = useState(0);
-  const { data, isLoading, error } = usePopular();
-  // auto increment index
+  const [movies, setMovies] = useState([]);
+  const navigate = useNavigate();
+  const image =
+  movies.length > 0 ? getPoster(movies[movieIndex].backdrop_path) : "";
+  const fetchMovies = async () => {
+    try {
+      const moviesData = await getData("/movie/popular");
+      const smallArray = await moviesData.slice(0, 5);
+      setMovies(smallArray);
+      setIsLoading(false);
+    } catch (error) {
+      setError(true);
+      console.log(error);
+    }
+  };
+  // useEffects
+  useEffect(() => {
+    fetchMovies();
+  }, []);
   useEffect(() => {
     setTimeout(() => {
-      if (movieIndex === 2) {
+      if (movieIndex === 4) {
         setMovieIndex(0);
       } else {
         setMovieIndex(movieIndex + 1);
@@ -39,12 +58,6 @@ const Slideshow = () => {
       console.log("open modal");
     },
   };
-  const smallArray = data ? data[0].results.slice(0, 3) : null;
-  // const movieMedia =  useGetMedia(smallArray[movieIndex].id) 
-  const image = smallArray
-    ? getPoster(smallArray[movieIndex].backdrop_path)
-    : null;
-  const movieId = smallArray ? smallArray[movieIndex].id : null;
   // return jsx
   return (
     <div className="slideshow">
@@ -58,10 +71,8 @@ const Slideshow = () => {
             style={{ backgroundImage: `url(${image})` }}
             className="image-container"
           >
-            <button onClick={() => buttonFunctions.openModal()}>
-              צפו עכשיו
-            </button>
-            <button onClick={() => navigate(`/movie/${movieId}`)}>
+            <button onClick={() => buttonFunctions.openModal()}>טריילר</button>
+            <button onClick={() => navigate(`/film/${movies[movieIndex].id}`)}>
               ראו עוד
             </button>
           </div>
@@ -69,6 +80,7 @@ const Slideshow = () => {
             <button onClick={() => buttonFunctions.increase()}>
               <AiOutlineRight />
             </button>
+            <img src="" alt="logo" />
             <button onClick={() => buttonFunctions.decrease()}>
               <AiOutlineLeft />
             </button>

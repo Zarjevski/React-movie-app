@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import Card from "./Card";
 import { FaChevronCircleLeft, FaChevronCircleRight } from "react-icons/fa";
+import {MdKeyboardDoubleArrowLeft} from 'react-icons/md';
+import { useNavigate } from "react-router-dom";
 
-const Slider = ({ data, heading }) => {
+const Slider = ({ data, heading, path, type }) => {
   const [precent, setPrecent] = useState(0);
+  const navigate = useNavigate()
   const maxPrecent = data.length / 5 * 100;
   const buttonFunctions = {
     forward: () => {
@@ -23,15 +26,16 @@ const Slider = ({ data, heading }) => {
   };
   return (
     <div className="container">
-      <h1>{heading}</h1>
+      <h1 onClick={()=> navigate(path)}>{heading}<MdKeyboardDoubleArrowLeft/></h1>
       <div className="slider" style={{ transform: `translateX(${precent}%)` }}>
         {data.map((card, i) => {
           return (
             <Card
               imgSrc={card ? card.poster_path : null}
               id={card ? card.id : null}
-              title={card ? card.title : null}
+              title={card ? card.title || card.name : null}
               key={i}
+              type={type}
             />
           );
         })}

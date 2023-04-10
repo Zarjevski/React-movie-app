@@ -7,8 +7,8 @@ const Spinner = () => {
 <path d="M34 54.5C34 56.9853 31.9853 59 29.5 59C27.0147 59 25 56.9853 25 54.5C25 52.0147 27.0147 50 29.5 50C31.9853 50 34 52.0147 34 54.5Z" fill="#00B4D8"/>
 <defs>
 <radialGradient id="paint0_angular_1_5" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(29.5 29.5) rotate(90) scale(29.5)">
-<stop stop-color="#00B4D8"/>
-<stop offset="1" stop-color="#00B4D8" stop-opacity="0"/>
+<stop stopColor="#00B4D8"/>
+<stop offset="1" stopColor="#00B4D8" stopOpacity="0"/>
 </radialGradient>
 </defs>
 </svg>

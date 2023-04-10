@@ -9,7 +9,8 @@ axiosClient.interceptors.request.use((config)=> {
         ...config, params: {
             ...config.params,
             api_key: process.env.REACT_APP_API_KEY,
-            language: "he"
+            language: "he",
+            
         }
     }
 })

@@ -10,6 +10,23 @@
   h1 {
     padding:  12px 12px 12px 0;
     font-size: 2.5rem;
+    margin-bottom: 10px;
+    z-index: 5;
+    transition: all 0.3s ease-in-out;
+    display: flex;
+    align-items: center;
+    text-shadow: 0 0 10px var(--accent-shadow);
+    svg {
+      width: 1.8rem;
+      height: 1.8rem;
+    }
+    &:hover {
+      color: var(--primary-clr);
+      cursor: pointer;
+      svg {
+        animation: infinite 2s arrows;
+      }
+    }
   }
 }
 .slider {
@@ -26,12 +43,16 @@
   justify-content: space-between;
   align-items: center;
   button {
-    // background: rgba(28, 32, 37, 0.692);
     background: none;
     height: auto;
     border: none;
     padding: 5px;
     z-index: 3;
+    transition: var(--transition);
+    &:hover {
+      transform: scale(1.08);
+      color: var(--primary-clr);
+    }
     svg {
       transition: all 0.3s linear;
       height: 3em;
@@ -51,8 +72,10 @@
   height: 80%;
   z-index: 3;
   text-align: center;
+  transition: var(--transition);
   &:hover {
     cursor: pointer;
+    transform: scale(1.05);
     h3 {
       color: var(--primary-clr);
     }
@@ -64,5 +87,23 @@
 
 .card img {
   height: 100%;
-  width: 90%;
+  width: 97%;
+  box-shadow: var(--box-shadow);
+  transition: var(--transition);
+  filter: grayscale(20%);
+  &:hover {
+    filter: grayscale(0);
+  }
+}
+
+
+@keyframes arrows {
+  0% {
+    transform: translateX(0);
+    opacity: 90%;
+  }
+  100% {
+    transform: translateX(-10px);
+    opacity: 0%;
+  }
 }

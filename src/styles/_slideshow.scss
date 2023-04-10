@@ -1,5 +1,5 @@
 .slideshow {
-  height: 80vh;
+  height: 70vh;
   width: 100%;
   position: relative;
   .image-container {
@@ -13,6 +13,9 @@
     justify-content: center;
     box-shadow: inset 0 0px 15px 10px var(--accent-shadow);
     transition: all 0.8s ease-in;
+    img{
+      height: 100%;
+    }
     button {
       background: var(--accent-clr);
       border: 1px solid var(--accent-clr);

@@ -1,8 +1,5 @@
 .spinner {
-  animation-name: spinner;
-  animation-iteration-count: infinite;
-  animation-duration: 4s;
-  animation-direction: normal;
+  animation:.75s linear infinite spinner;
 }
 
 .center {
@@ -46,6 +43,48 @@
   }
 }
 
+// pagination
+
+.pagination {
+  margin-bottom: 54px;
+  display: flex;
+  align-items: center;
+  button {
+    background-color: var(--accent-clr);
+    border-radius: var(--border-radius);
+    color: white;
+    width: 44px;
+    height: 44px;
+    border: none;
+    box-shadow: 0 0 12px var(--accent-shadow);
+    margin: 0 6px 0 6px;
+    &:hover {
+      transform: scale(1.05);
+    }
+    svg {
+      transition: var(--transition);
+      height: 1.5em;
+      width: 1.5em;
+      &:hover {
+        color: var(--primary-clr);
+      }
+    }
+  }
+  .page-number {
+    background:none;
+    box-shadow: none;
+    &:hover {
+      background-color: var(--accent-clr);
+      box-shadow: 0 0 12px var(--accent-shadow);
+    }
+  }
+  .active{
+    width: 44px;
+    height: 44px;
+    color: var(--primary-clr);
+    background-color: var(--accent-clr);
+  }
+}
 
 
 // animations keyframes
@@ -63,4 +102,18 @@
     100% {
         background-position: -100% 0;
     }
+}
+
+
+@media only screen and (max-width: 500px) {
+  .pagination {
+    button {
+      width: 34px;
+      height: 34px;
+      svg {
+        height: 1.2em;
+        width: 1.2em;
+      }
+    }
+  }
 }
