@@ -68,3 +68,28 @@
     }
   }
 }
+
+
+@media only screen and (max-width: 500px) {
+  .slideshow{
+    margin-top: 7vh;
+    .image-container {
+      button {
+        font-size: 14px;
+        max-width: 64px;
+        height: 32px;
+        border-radius: 0.5rem;
+      }
+    }
+    .slideshow-overlay {
+      button {
+        width: 10%;
+        opacity: 0.1;
+        svg {
+          height: 2em;
+          width: 2em;
+        }
+      }
+    }
+  }
+}

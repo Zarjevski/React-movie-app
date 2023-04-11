@@ -55,8 +55,8 @@
     }
     svg {
       transition: all 0.3s linear;
-      height: 3em;
-      width: 3em;
+      height: 3.2em;
+      width: 3.2em;
       color: rgb(230, 230, 230);
       filter: drop-shadow(0 0 15px black);
       &:hover {
@@ -105,5 +105,38 @@
   100% {
     transform: translateX(-10px);
     opacity: 0%;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .card {
+    flex: 0 0 50%;
+    max-width: 50%;
+    h3{ 
+      font-size: 1rem;
+    }
+  }
+  .container {
+    height: 50vh;
+    h1 {
+      font-size: 1.5rem;
+      margin-bottom: 0;
+      svg {
+        height: 1em;
+        width: 1em;
+      }
+    }
+  }
+  .slider {
+    width: 100%;
+    align-items: center;
+  }
+  .overlay {
+    button {
+      svg {
+        height: 2.5em;
+        width: 2.5em;
+      }
+    }
   }
 }

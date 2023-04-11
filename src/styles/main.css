@@ -23,6 +23,9 @@ nav ul a {
 nav ul a:hover {
   color: var(--primary-clr);
 }
+nav svg {
+  display: none;
+}
 
 @media only screen and (max-width: 500px) {
   nav {
@@ -46,6 +49,7 @@ nav ul a:hover {
     background-color: var(--base-clr);
     width: 100%;
     flex-direction: column;
+    display: block;
   }
   nav ul a {
     font-size: 14px;
@@ -134,6 +138,25 @@ footer {
   color: var(--white-text);
 }
 
+@media only screen and (max-width: 500px) {
+  .slideshow {
+    margin-top: 7vh;
+  }
+  .slideshow .image-container button {
+    font-size: 14px;
+    max-width: 64px;
+    height: 32px;
+    border-radius: 0.5rem;
+  }
+  .slideshow .slideshow-overlay button {
+    width: 10%;
+    opacity: 0.1;
+  }
+  .slideshow .slideshow-overlay button svg {
+    height: 2em;
+    width: 2em;
+  }
+}
 .container {
   display: flex;
   flex-direction: column;
@@ -195,8 +218,8 @@ footer {
 }
 .overlay button svg {
   transition: all 0.3s linear;
-  height: 3em;
-  width: 3em;
+  height: 3.2em;
+  width: 3.2em;
   color: rgb(230, 230, 230);
   filter: drop-shadow(0 0 15px black);
 }
@@ -242,6 +265,34 @@ footer {
   100% {
     transform: translateX(-10px);
     opacity: 0%;
+  }
+}
+@media only screen and (max-width: 500px) {
+  .card {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+  .card h3 {
+    font-size: 1rem;
+  }
+  .container {
+    height: 50vh;
+  }
+  .container h1 {
+    font-size: 1.5rem;
+    margin-bottom: 0;
+  }
+  .container h1 svg {
+    height: 1em;
+    width: 1em;
+  }
+  .slider {
+    width: 100%;
+    align-items: center;
+  }
+  .overlay button svg {
+    height: 2.5em;
+    width: 2.5em;
   }
 }
 .spinner {
@@ -421,6 +472,9 @@ footer {
   width: 100%;
   display: flex;
 }
+.data-container .media-center .mobile-play-button {
+  display: none;
+}
 .data-container .media-center img {
   height: 100%;
   margin-left: 5px;
@@ -540,7 +594,7 @@ footer {
 
 @media only screen and (max-width: 500px) {
   .wrapper {
-    width: 90%;
+    width: 100%;
   }
   .collection {
     margin-top: 80px;
@@ -555,6 +609,12 @@ footer {
   .data-container .heading {
     font-size: 0.8rem;
   }
+  .data-container .heading h1 {
+    margin-right: 8px;
+  }
+  .data-container .heading .rating {
+    margin-left: 8px;
+  }
   .data-container .heading .rating span {
     font-size: 0.7rem;
   }
@@ -563,8 +623,35 @@ footer {
     flex-direction: column;
     align-items: center;
   }
+  .data-container .media-center .mobile-play-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 84px;
+    width: 84px;
+    opacity: 0.5;
+    border-radius: 50%;
+    position: absolute;
+    margin-top: 50%;
+    background-color: var(--accent-clr);
+    transition: var(--transition);
+  }
+  .data-container .media-center .mobile-play-button svg {
+    margin-left: 4px;
+    height: 2em;
+    width: 3em;
+  }
+  .data-container .media-center .mobile-play-button:hover {
+    opacity: 0.9;
+    cursor: pointer;
+  }
+  .data-container .media-center .mobile-play-button:hover svg {
+    color: var(--primary-clr);
+  }
   .data-container .media-center img {
-    width: 90%;
+    margin: 4px;
+    width: 80%;
+    height: 80%;
   }
   .data-container .media-center iframe {
     display: none;
@@ -574,6 +661,7 @@ footer {
   }
   .data-container .info .genres {
     flex-wrap: wrap;
+    padding: 0 44px 0 44px;
   }
   .data-container .info .genres .genre {
     font-size: 14px;

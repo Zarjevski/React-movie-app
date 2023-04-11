@@ -31,20 +31,27 @@ const Slideshow = () => {
   useEffect(() => {
     setTimeout(() => {
       if (movieIndex === 4) {
-        setMovieIndex(0);
+        setMovieIndex((prevIndex) => {
+          return 0
+        });
       } else {
-        setMovieIndex(movieIndex + 1);
+        setMovieIndex((prevIndex) => {
+          return prevIndex + 1
+        });
       }
     }, 7000);
   }, [movieIndex]);
   // button functions
   const buttonFunctions = {
     increase: () => {
-      if (movieIndex === 2) {
-        setMovieIndex(0);
+      if (movieIndex === 4) {
+        setMovieIndex((prevIndex)=> {
+          return prevIndex = 0
+        });
       } else {
-        setMovieIndex(movieIndex + 1);
-        console.log(movieIndex);
+        setMovieIndex((prevIndex)=> {
+          return prevIndex + 1
+        });
       }
     },
     decrease: () => {

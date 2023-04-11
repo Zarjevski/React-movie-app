@@ -6,6 +6,7 @@ import {
   AiOutlineVideoCamera,
   AiOutlineCamera,
 } from "react-icons/ai";
+import {IoPlayOutline} from 'react-icons/io5'
 import Spinner from "../components/Spinner";
 import Slider from "../components/Slider";
 import Actors from "../components/Actors";
@@ -55,6 +56,7 @@ const Movie = ({ type }) => {
                   </div>
                 </div>
                 <div className="media-center">
+                  <div className="mobile-play-button"><IoPlayOutline/></div>
                   <img src={posterUrl} alt={data.title || data.name} />
                   <iframe title={data.title} src={trailer}></iframe>
                   <div className="gallery-links">
