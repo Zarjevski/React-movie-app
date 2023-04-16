@@ -5,14 +5,12 @@ import Skeleton from "./Skeleton";
 import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
 
 const Slideshow = () => {
-  // constants
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(false);
-  const [movieIndex, setMovieIndex] = useState(0);
-  const [movies, setMovies] = useState([]);
+  const [isLoading, setIsLoading] = useState(true); // loading state
+  const [error, setError] = useState(false); // if loading data fails
+  const [movieIndex, setMovieIndex] = useState(0); // array index for the slides
+  const [movies, setMovies] = useState([]); // data array
   const navigate = useNavigate();
-  const image =
-  movies.length > 0 ? getPoster(movies[movieIndex].backdrop_path) : "";
+  const image = getPoster(movies[movieIndex]?.backdrop_path);
   const fetchMovies = async () => {
     try {
       const moviesData = await getData("/movie/popular");
@@ -21,45 +19,41 @@ const Slideshow = () => {
       setIsLoading(false);
     } catch (error) {
       setError(true);
-      console.log(error);
     }
   };
-  // useEffects
   useEffect(() => {
     fetchMovies();
   }, []);
   useEffect(() => {
     setTimeout(() => {
-      if (movieIndex === 4) {
-        setMovieIndex((prevIndex) => {
-          return 0
-        });
-      } else {
-        setMovieIndex((prevIndex) => {
-          return prevIndex + 1
-        });
-      }
-    }, 7000);
-  }, [movieIndex]);
+      setMovieIndex((prevIndex) => {
+        if (prevIndex === 4) {
+          return (prevIndex = 0);
+        } else {
+          return prevIndex + 1;
+        }
+      });
+    }, 15000);
+  }, [setMovieIndex]);
   // button functions
   const buttonFunctions = {
     increase: () => {
-      if (movieIndex === 4) {
-        setMovieIndex((prevIndex)=> {
-          return prevIndex = 0
-        });
-      } else {
-        setMovieIndex((prevIndex)=> {
-          return prevIndex + 1
-        });
-      }
+      setMovieIndex((prevIndex) => {
+        if (prevIndex === 4) {
+          return (prevIndex = 0);
+        } else {
+          return prevIndex + 1;
+        }
+      });
     },
     decrease: () => {
-      if (movieIndex === 0) {
-        setMovieIndex(2);
-      } else {
-        setMovieIndex(movieIndex - 1);
-      }
+      setMovieIndex((prevIndex) => {
+        if (prevIndex === 0) {
+          return (prevIndex = 4);
+        } else {
+          return prevIndex - 1;
+        }
+      });
     },
     openModal: () => {
       console.log("open modal");

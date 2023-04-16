@@ -19,6 +19,7 @@ const Collection = ({ type }) => {
           const response = await getData(`/discover/${type}`, page);
           setData(response);
           setIsLoading(false);
+          window.scrollTo(0, 0);
         } catch (error) {
           console.log(error);
         }
@@ -28,6 +29,7 @@ const Collection = ({ type }) => {
         try {
           setData(await getData(`${pathname}`, page));
           setIsLoading(false);
+          window.scrollTo(0, 0);
         } catch (error) {
           console.log(error);
         }

@@ -3,7 +3,9 @@ import { Route, Routes } from "react-router-dom";
 import Home from "../pages/Home";
 import Movie from "../pages/Movie";
 import Collection from "../pages/Collection";
+import Media from "../pages/Media";
 import NotFound from "../pages/NotFound";
+import Episodes from "../pages/Episodes";
 
 const Body = () => {
   return (
@@ -16,6 +18,8 @@ const Body = () => {
       <Route path="/tv/:category" element={<Collection />} />
       <Route path="/film/:id" element={<Movie type={"movie"} />} />
       <Route path="/tv/series/:id" element={<Movie type={"tv"} />} />
+      <Route path="/:type/:id/:media" element={<Media/>}/>
+      <Route path="/tv/series/:id/episodes" element={<Episodes/>}/>
       <Route path="*" element={<NotFound />} />
     </Routes>
   );

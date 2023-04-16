@@ -30,6 +30,15 @@ export const getSimilar = async (type, id) => {
   }
 };
 
+export const getSeasonDetails = async (id, season) => {
+  try {
+    const response = await axiosClient.get(`/tv/${id}/season/${season}`);
+    return response.data
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 export const getCast = async (type, id) => {
   try {
     const response = await axiosClient.get(`/${type}/${id}/credits`);
@@ -58,11 +67,12 @@ export const getVideos = async (id, type) => {
   try {
     const response = await axiosClient.get(`/${type}/${id}/videos`);
     const results = await response.data.results;
-    console.log(response.data);
     if (results && results[0].site === "YouTube") {
       return `https://www.youtube.com/embed/${results[0].key}`;
-    } else if (!results) {
-      console.log(results);
+    } else if (!results[0].site) {
+      console.log("no trailer for in hebrew");
+    } else {
+      return [];
     }
   } catch (error) {
     console.error(error);

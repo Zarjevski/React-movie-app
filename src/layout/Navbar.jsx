@@ -4,7 +4,7 @@ import { Link,useNavigate } from "react-router-dom";
 import {AiOutlineMenu} from 'react-icons/ai'
 
 const Navbar = () => {
-  const [isNavOpen, setIsNavOpen] = useState(false)
+  const [isNavOpen, setIsNavOpen] = useState(true)
   const navigate = useNavigate()
   return (
     <nav>

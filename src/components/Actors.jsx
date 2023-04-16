@@ -18,11 +18,11 @@ const Actors = ({ id, type }) => {
       {isLoading ? (
         <Spinner />
       ) : (
-        actors.map((person) => {
+        actors.map((person, index) => {
           const { name, character, profile_path, id } = person;
           const img = getPoster(profile_path);
           return (
-            <div className="actor">
+            <div className="actor" key={index}>
               <div className="actor-img-box">
                 <img src={img} alt={name} />
               </div>

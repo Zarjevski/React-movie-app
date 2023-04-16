@@ -75,7 +75,8 @@
   transition: var(--transition);
   &:hover {
     cursor: pointer;
-    transform: scale(1.05);
+    transform: scale(1.05) translateY(-10px);
+    z-index: 8;
     h3 {
       color: var(--primary-clr);
     }

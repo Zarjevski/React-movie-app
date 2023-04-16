@@ -7,7 +7,7 @@ nav {
   box-shadow: 0 4px 14px var(--accent-shadow);
   -webkit-backdrop-filter: blur(12px);
           backdrop-filter: blur(12px);
-  z-index: 999;
+  z-index: 10;
   position: relative;
 }
 nav ul {
@@ -237,7 +237,8 @@ footer {
 }
 .card:hover {
   cursor: pointer;
-  transform: scale(1.05);
+  transform: scale(1.05) translateY(-10px);
+  z-index: 8;
 }
 .card:hover h3 {
   color: var(--primary-clr);
@@ -337,6 +338,7 @@ footer {
   margin-bottom: 54px;
   display: flex;
   align-items: center;
+  direction: ltr;
 }
 .pagination button {
   background-color: var(--accent-clr);
@@ -398,6 +400,10 @@ footer {
   }
 }
 .search-bar {
+  display: flex;
+  position: relative;
+}
+.search-bar .search-input {
   width: 300px;
   background-color: var(--base-clr);
   outline: none;
@@ -408,9 +414,22 @@ footer {
   color: white;
   font-size: 18px;
 }
+.search-bar .search-icon {
+  height: 32px;
+  width: 32px;
+  border-radius: 50%;
+  position: absolute;
+  z-index: 11;
+  display: block;
+}
+.search-bar .search-icon svg {
+  color: white;
+  height: 2em;
+  width: 2em;
+}
 
 @media only screen and (max-width: 500px) {
-  .search-bar {
+  .search-input {
     display: none;
   }
 }
@@ -430,8 +449,7 @@ footer {
   background-position: center;
   background-size: cover;
 }
-
-.data-container {
+.movie-hero .data-container {
   height: 100%;
   width: 100%;
   background-color: rgba(28, 32, 37, 0.5764705882);
@@ -442,7 +460,7 @@ footer {
   justify-content: center;
   align-items: center;
 }
-.data-container .heading {
+.movie-hero .data-container .heading {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
@@ -451,50 +469,50 @@ footer {
   margin-bottom: 10px;
   font-size: 1.5rem;
 }
-.data-container .heading .rating {
+.movie-hero .data-container .heading .rating {
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.data-container .heading .rating span {
+.movie-hero .data-container .heading .rating span {
   color: gray;
   margin-left: 4px;
   font-size: 1.4rem;
 }
-.data-container .heading .rating svg {
+.movie-hero .data-container .heading .rating svg {
   margin-right: 5px;
   height: 1.3em;
   width: 1.3em;
   color: #ffcd3c;
 }
-.data-container .media-center {
+.movie-hero .data-container .media-center {
   height: 60%;
   width: 100%;
   display: flex;
 }
-.data-container .media-center .mobile-play-button {
+.movie-hero .data-container .media-center .mobile-play-button {
   display: none;
 }
-.data-container .media-center img {
+.movie-hero .data-container .media-center img {
   height: 100%;
   margin-left: 5px;
   box-shadow: var(--box-shadow);
 }
-.data-container .media-center iframe {
+.movie-hero .data-container .media-center iframe {
   width: 60%;
   background-color: var(--accent-clr);
   outline: none;
   border: none;
   box-shadow: var(--box-shadow);
 }
-.data-container .media-center .gallery-links {
+.movie-hero .data-container .media-center .gallery-links {
   width: 20%;
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
-.data-container .media-center .gallery-links div {
+.movie-hero .data-container .media-center .gallery-links div {
   background-color: var(--base-clr);
   transition: var(--transition);
   width: 100%;
@@ -506,30 +524,30 @@ footer {
   align-items: center;
   justify-content: center;
 }
-.data-container .media-center .gallery-links div:hover {
+.movie-hero .data-container .media-center .gallery-links div:hover {
   cursor: pointer;
   background-color: var(--accent-clr);
 }
-.data-container .media-center .gallery-links div:hover h2,
-.data-container .media-center .gallery-links div:hover svg {
+.movie-hero .data-container .media-center .gallery-links div:hover h2,
+.movie-hero .data-container .media-center .gallery-links div:hover svg {
   color: var(--primary-clr);
 }
-.data-container .media-center .gallery-links div svg {
+.movie-hero .data-container .media-center .gallery-links div svg {
   height: 2em;
   width: 2em;
   transition: var(--transition);
 }
-.data-container .media-center .gallery-links div h2 {
+.movie-hero .data-container .media-center .gallery-links div h2 {
   transition: var(--transition);
 }
-.data-container .info {
+.movie-hero .data-container .info {
   height: 20%;
 }
-.data-container .info .genres {
+.movie-hero .data-container .info .genres {
   display: flex;
   margin-top: 8px;
 }
-.data-container .info .genres .genre {
+.movie-hero .data-container .info .genres .genre {
   text-align: center;
   min-width: 84px;
   border-radius: var(--border-radius);
@@ -538,14 +556,16 @@ footer {
   border: 2px solid var(--white-text);
   margin: 8px;
 }
-.data-container .info .review {
+.movie-hero .data-container .info .review {
   font-size: 20px;
   padding: 8px;
 }
 
 .actors {
   display: grid;
-  grid-template-columns: repeat(2, 50%);
+  grid-template-columns: repeat(3, 33%);
+  height: 55vh;
+  overflow-y: hidden;
 }
 .actors .actor {
   display: flex;
@@ -590,6 +610,63 @@ footer {
 .collection .card img {
   height: 80%;
   width: 100%;
+}
+
+.media header {
+  height: 25vh;
+  border: 1px solid red;
+  display: flex;
+}
+.media header .image-container {
+  width: 20%;
+  height: 100%;
+  border: 1px solid purple;
+}
+.media .grid {
+  height: 75vh;
+  border: 1px solid yellow;
+}
+
+.episodes-page header {
+  display: flex;
+  flex-direction: column;
+  height: 35vh;
+  width: 100%;
+  border: 1px solid red;
+}
+.episodes-page header .info {
+  height: 20vh;
+  display: flex;
+}
+.episodes-page header .info .image-container {
+  width: 20%;
+  border: 1px solid red;
+  height: 100%;
+}
+.episodes-page header .info .image-container img {
+  height: 90%;
+  width: 50%;
+}
+.episodes-page header .info .tv-title {
+  padding: 8px;
+}
+.episodes-page header .seasons {
+  height: 15vh;
+  border: 1px solid red;
+  padding: 8px;
+}
+.episodes-page header .seasons .season-numbers {
+  height: 10vh;
+  border: 1px solid red;
+  padding: 8px;
+}
+.episodes-page .episodes {
+  min-height: 70vh;
+  border: 1px solid red;
+}
+.episodes-page .episodes .episode {
+  height: 10vh;
+  border: 1px solid red;
 }
 
 @media only screen and (max-width: 500px) {
