@@ -1,22 +1,34 @@
 import React, { useState } from "react";
 import SearchBar from "../components/SearchBar";
-import { Link,useNavigate } from "react-router-dom";
-import {AiOutlineMenu} from 'react-icons/ai'
+import { Link, useNavigate } from "react-router-dom";
+import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 
 const Navbar = () => {
-  const [isNavOpen, setIsNavOpen] = useState(true)
-  const navigate = useNavigate()
+  const [isNavOpen, setIsNavOpen] = useState(false);
+  const navigate = useNavigate();
+  const toggleNav = () => {
+    setIsNavOpen(!isNavOpen);
+  };
   return (
     <nav>
-      <div>
-        <AiOutlineMenu onClick={()=> setIsNavOpen(true)}/>
-        <h1 onClick={()=> navigate('/')}>טריילרים</h1>
+      <div className="logo-conatiner">
+        {isNavOpen ? (
+          <AiOutlineClose className="close" onClick={toggleNav} />
+        ) : (
+          <AiOutlineMenu className="hamburger" onClick={toggleNav} />
+        )}
+        <h1 onClick={() => navigate("/")}>טריילרים</h1>
       </div>
-      <ul style={isNavOpen ? {} : {display:"none"}}>
-        <Link to={"/"}>בית</Link>
-        <Link to={"/movies"}>סרטים</Link>
-        <Link to={"/tv"}>סדרות</Link>
-        <Link to={"/shop"}>חנות</Link>
+      <ul style={isNavOpen ? { display: "flex" } : {}}>
+        <Link to={"/"} onClick={toggleNav}>
+          בית
+        </Link>
+        <Link to={"/movies"} onClick={toggleNav}>
+          סרטים
+        </Link>
+        <Link to={"/tv"} onClick={toggleNav}>
+          סדרות
+        </Link>
       </ul>
       <SearchBar />
     </nav>

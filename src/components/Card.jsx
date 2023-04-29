@@ -1,11 +1,12 @@
 import React from "react";
 import { getPoster } from "../api/TMDB";
 import { useNavigate } from "react-router-dom";
+import noMovie from '../assets/noMovie.png'
 
 const Card = ({id, imgSrc, title, type}) => {
   const navigate = useNavigate();
   // instead of null make a placeholder img
-  const img = imgSrc ? getPoster(imgSrc) : null 
+  const img = imgSrc ? getPoster(imgSrc) : noMovie 
   let path = ""
   if (type === "tv") {
     path = `/tv/series/${id}`

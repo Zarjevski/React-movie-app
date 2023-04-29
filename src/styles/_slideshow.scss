@@ -30,6 +30,7 @@
       box-shadow: 0 0 12px var(--accent-shadow);
       z-index: 4;
       &:hover {
+        color: var(--base-clr);
         background: var(--primary-clr);
       }
     }
@@ -49,6 +50,9 @@
     top: 0;
     display: flex;
     justify-content: space-between;
+    img{
+      margin-top: 30%;
+    }
     button {
         background: var(--accent-clr);
         opacity: 0.2;

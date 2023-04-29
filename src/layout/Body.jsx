@@ -15,6 +15,7 @@ const Body = () => {
       <Route path="/tv" element={<Collection type={"tv"} />} />
       <Route path="/movie/:category" element={<Collection />} />
       <Route path="/movie/:id/similar" element={<Collection />} />
+      <Route path="/search/:search" element={<Collection />} />
       <Route path="/tv/:category" element={<Collection />} />
       <Route path="/film/:id" element={<Movie type={"movie"} />} />
       <Route path="/tv/series/:id" element={<Movie type={"tv"} />} />

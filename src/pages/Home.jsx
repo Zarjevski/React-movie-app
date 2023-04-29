@@ -3,6 +3,7 @@ import Slideshow from "../components/Slideshow";
 import Slider from "../components/Slider";
 import { getData } from "../api/TMDB";
 import Spinner from "../components/Spinner";
+import Modal from '../components/Modal'
 
 const Home = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -28,6 +29,7 @@ const Home = () => {
         <Spinner />
       ) : (
         <div className="wrapper">
+          <Modal/>
           <Slideshow />
           <Slider
             data={popularMovies}

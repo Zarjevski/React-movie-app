@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
-import { getById, getSimilar, getVideos } from "../api/TMDB";
+import { useParams } from "react-router-dom";
+import { getById, getData, getVideos } from "../api/TMDB";
 import Spinner from "../components/Spinner";
 import Slider from "../components/Slider";
 import Actors from "../components/Actors";
 import MediaHero from "../components/MediaHero";
+import GoToEpisodes from "../components/GoToEpisodes";
 
 const Movie = ({ type }) => {
   const { id } = useParams();
@@ -15,7 +16,7 @@ const Movie = ({ type }) => {
   const fetchMovie = async () => {
     try {
       setData(await getById(type, id));
-      setSimilar(await getSimilar(type, id));
+      setSimilar(await getData(`/${type}/${id}/similar`));
       setTrailer(await getVideos(id, type));
       setIsLoading(false);
       window.scrollTo(0, 0);
@@ -49,26 +50,19 @@ const Movie = ({ type }) => {
           />
           <div className="wrapper">
             {type === "tv" ? (
-              <Link
-                to={`/tv/series/${id}/episodes`}
-                state={{
-                  sesons: data?.number_of_seasons,
-                  posterUrl: data?.poster_path,
-                  title: data?.name,
-                }}
-              >
-                GO TO EPISODES
-              </Link>
+              <GoToEpisodes data={data}/>
             ) : null}
-            <Actors type={type} id={id} />
-            <div className="similar-movies">
-              <Slider
-                data={similar}
-                heading={"סרטים דומים"}
-                path={`/${type}/${data.id}/similar`}
-                type={type}
-              />
-            </div>
+            {/* <Actors type={type} id={id} /> */}
+            {similar.length < 1 ? null : (
+              <div className="similar-movies">
+                <Slider
+                  data={similar}
+                  heading={"סרטים דומים"}
+                  path={`/${type}/${data.id}/similar`}
+                  type={type}
+                />
+              </div>
+            )}
           </div>
         </>
       )}

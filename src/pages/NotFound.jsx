@@ -1,16 +1,16 @@
-import React from 'react'
-import { useNavigate } from 'react-router-dom'
+import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const NotFound = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   return (
     <main>
-      <div className='not-found-msg'>
-      <h1>הדף המבוקש אינו נמצא.</h1>
-      <button onClick={()=> navigate(-1)}>חזרה</button>
+      <div className="not-found-msg">
+        <h1>הדף המבוקש אינו נמצא.</h1>
+        <button className="not-found-btn" onClick={() => navigate(-1)}>חזרה</button>
       </div>
     </main>
-  )
-}
+  );
+};
 
-export default NotFound
+export default NotFound;

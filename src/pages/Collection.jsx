@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
-import { getData } from "../api/TMDB";
+import { useLocation, useParams, useNavigate } from "react-router-dom";
+import { getData, getSearchResult } from "../api/TMDB";
 import Card from "../components/Card";
 import Spinner from "../components/Spinner";
 import Pagination from "../components/Pagination";
@@ -11,17 +11,28 @@ const Collection = ({ type }) => {
   const [page, setPage] = useState(1);
   const [isLoading, setIsLoading] = useState(true);
   const { pathname } = useLocation();
+  const { search } = useParams();
+  const navigate = useNavigate()
   useEffect(() => {
-    setIsLoading(true)
+    setIsLoading(true);
     if (type === "movie" || type === "tv") {
       (async function () {
         try {
-          const response = await getData(`/discover/${type}`, page);
-          setData(response);
+          setData(await getData(`/discover/${type}`, page));
           setIsLoading(false);
           window.scrollTo(0, 0);
         } catch (error) {
-          console.log(error);
+          setError(true);
+        }
+      })();
+    } else if (search) {
+      (async function () {
+        try {
+          setData(await getSearchResult(search, page));
+          setIsLoading(false);
+          window.scroll(0, 0);
+        } catch (error) {
+          setError(true);
         }
       })();
     } else {
@@ -31,7 +42,7 @@ const Collection = ({ type }) => {
           setIsLoading(false);
           window.scrollTo(0, 0);
         } catch (error) {
-          console.log(error);
+          setError(true);
         }
       })();
     }
@@ -41,7 +52,12 @@ const Collection = ({ type }) => {
       {isLoading ? (
         <Spinner />
       ) : error ? (
-        <h1>there is an error</h1>
+        <h1>קיימת שגיאה</h1>
+      ) : data.length < 1 ? (
+        <>
+          <h1>לא נמצאו תוצאות</h1>
+          <button className="no-result-btn" onClick={()=> navigate(-1)}>חזרה</button>
+        </>
       ) : (
         <>
           <section className="collection">

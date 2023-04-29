@@ -17,6 +17,7 @@
   --border-radius: 1rem;
   --white-text: rgb(226, 223, 223);
   --box-shadow: 0 0 12px 4px var(--accent-shadow);
+  --text-shadow: black 2px 0 2px ;
   --transition:  all 0.3s linear;
 
 }
@@ -32,12 +33,20 @@ html {
   scroll-behavior: smooth;
 }
 
+::-webkit-scrollbar-track {
+  background: var(--base-clr);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--accent-clr);
+}
+
 body {
   background-color: var(--base-clr);
   color: var(--white-text);
   overflow-x: hidden !important;
   font-family: sans-serif;
-  text-shadow: 0 0 12px var(--accent-shadow);
+  text-shadow: var(--text-shadow);
 }
 
 main {

@@ -23,33 +23,40 @@ nav ul a {
 nav ul a:hover {
   color: var(--primary-clr);
 }
-nav svg {
+nav .hamburger, nav .close {
   display: none;
 }
 
 @media only screen and (max-width: 500px) {
   nav {
-    width: 100vw;
+    width: 100%;
     min-height: 7vh;
+    height: auto;
     position: fixed;
     flex-direction: column;
   }
-  nav div {
+  nav .logo-conatiner {
+    padding-top: 10px;
+    margin-bottom: 10px;
     display: flex;
     width: 100%;
     align-items: center;
-    justify-content: space-around;
+    cursor: pointer;
   }
-  nav div svg {
+  nav .logo-conatiner .hamburger, nav .logo-conatiner .close {
     height: 1.8em;
     width: 1.8em;
+    margin: 0 12px 0 18px;
+    display: block;
     color: var(--white-text);
   }
   nav ul {
     background-color: var(--base-clr);
+    margin-top: 12px;
     width: 100%;
+    height: auto;
     flex-direction: column;
-    display: block;
+    display: none;
   }
   nav ul a {
     font-size: 14px;
@@ -61,9 +68,12 @@ footer {
   height: 5vh;
   width: 100%;
   display: flex;
+  font-size: 0.8rem;
   align-items: center;
   justify-content: center;
   margin-top: 12px;
+  z-index: 10;
+  position: relative;
   box-shadow: 0 0 12px var(--accent-shadow);
 }
 
@@ -107,6 +117,7 @@ footer {
   z-index: 4;
 }
 .slideshow .image-container button:hover {
+  color: var(--base-clr);
   background: var(--primary-clr);
 }
 .slideshow .slideshow-overlay {
@@ -119,6 +130,9 @@ footer {
   top: 0;
   display: flex;
   justify-content: space-between;
+}
+.slideshow .slideshow-overlay img {
+  margin-top: 30%;
 }
 .slideshow .slideshow-overlay button {
   background: var(--accent-clr);
@@ -298,6 +312,9 @@ footer {
 }
 .spinner {
   animation: 0.75s linear infinite spinner;
+  color: var(--primary-clr);
+  height: 3em;
+  width: 3em;
 }
 
 .center {
@@ -331,6 +348,24 @@ footer {
   box-shadow: 0 0 12px 2px var(--accent-shadow);
 }
 .not-found-msg button:hover {
+  background: var(--primary-clr);
+}
+
+.no-result-btn {
+  background: var(--accent-clr);
+  border: 1px solid var(--accent-clr);
+  height: 42px;
+  width: 64px;
+  font-size: 14px;
+  border-radius: 1rem;
+  color: white;
+  margin: 12px 0 0 0;
+  transition: all 0.3s linear;
+  cursor: pointer;
+  box-shadow: 0 0 12px var(--accent-shadow);
+}
+.no-result-btn:hover {
+  color: var(--base-clr);
   background: var(--primary-clr);
 }
 
@@ -376,6 +411,36 @@ footer {
   background-color: var(--accent-clr);
 }
 
+.modal-overlay {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(28, 32, 37, 0.8);
+  transition: var(--transition);
+  z-index: 11;
+}
+.modal-overlay img {
+  width: 80vw;
+  height: 80vh;
+}
+.modal-overlay svg {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 20px;
+  height: 2.5em;
+  width: 2.5em;
+  transition: var(--transition);
+}
+.modal-overlay svg:hover {
+  cursor: pointer;
+  color: var(--primary-clr);
+}
+
 @keyframes spinner {
   0% {
     transform: rotate(0);
@@ -401,31 +466,46 @@ footer {
 }
 .search-bar {
   display: flex;
+  align-items: center;
   position: relative;
 }
+.search-bar .search {
+  width: 0;
+}
 .search-bar .search-input {
-  width: 300px;
   background-color: var(--base-clr);
   outline: none;
   height: 32px;
   border: 1px solid var(--base-clr);
-  border-radius: var(--border-radius);
-  padding: 8px;
+  border-top-left-radius: var(--border-radius);
+  border-bottom-left-radius: var(--border-radius);
+  transition: all 2s linear;
+  padding: 12px;
   color: white;
   font-size: 18px;
 }
 .search-bar .search-icon {
-  height: 32px;
-  width: 32px;
+  height: 30px;
+  width: 30px;
+  right: -20px;
   border-radius: 50%;
   position: absolute;
-  z-index: 11;
+  text-align: center;
+  background-color: var(--accent-clr);
+  box-shadow: 0 0 2px 2px var(--base-clr);
   display: block;
 }
 .search-bar .search-icon svg {
+  margin-top: 6px;
   color: white;
-  height: 2em;
-  width: 2em;
+  height: 1em;
+  width: 1em;
+}
+.search-bar .search-icon:hover {
+  cursor: pointer;
+}
+.search-bar .search-icon:hover svg {
+  color: var(--primary-clr);
 }
 
 @media only screen and (max-width: 500px) {
@@ -436,11 +516,42 @@ footer {
 .wrapper {
   width: 70%;
   min-height: 100%;
+  height: auto;
 }
 
 .movie {
   display: flex;
   align-items: center;
+}
+.movie .go-to-episodes {
+  width: -moz-fit-content;
+  width: fit-content;
+  min-height: 8vh;
+  margin: 14px;
+  display: flex;
+  align-items: center;
+}
+.movie .go-to-episodes a {
+  color: var(--white-text);
+  text-decoration: none;
+}
+.movie .go-to-episodes h1 {
+  font-size: 2rem;
+  text-shadow: var(--text-shadow);
+}
+.movie .go-to-episodes h1 svg {
+  height: 0.7em;
+  width: 0.7em;
+}
+.movie .go-to-episodes h1:hover {
+  color: var(--primary-clr);
+  cursor: pointer;
+}
+.movie .go-to-episodes h1:hover svg {
+  animation: infinite 2s arrows;
+}
+.movie .go-to-episodes .last-episodes {
+  height: 10vh;
 }
 
 .movie-hero {
@@ -555,6 +666,7 @@ footer {
   padding: 5px;
   border: 2px solid var(--white-text);
   margin: 8px;
+  box-shadow: 0 0 2px 2px var(--base-clr);
 }
 .movie-hero .data-container .info .review {
   font-size: 20px;
@@ -612,61 +724,150 @@ footer {
   width: 100%;
 }
 
+.media {
+  min-height: 100vh;
+}
 .media header {
-  height: 25vh;
-  border: 1px solid red;
+  height: 30vh;
+  padding: 20px;
   display: flex;
+  background-color: var(--accent-clr);
+  box-shadow: var(--box-shadow);
 }
 .media header .image-container {
-  width: 20%;
+  width: 15%;
   height: 100%;
-  border: 1px solid purple;
+  padding: 6px;
 }
-.media .grid {
-  height: 75vh;
-  border: 1px solid yellow;
+.media header .image-container img {
+  width: 100%;
+  height: 100%;
+}
+.media .media-content {
+  width: 100%;
+  min-height: 75vh;
+  height: auto;
+}
+.media .media-content .grid {
+  min-height: 75vh;
+  padding: 12px;
+  width: 100%;
+  display: grid;
+  text-align: center;
+  grid-template-columns: repeat(3, 30%);
+  gap: 3%;
+}
+.media .media-content .grid .media-card {
+  width: 100%;
+  height: 30vh;
+  box-shadow: var(--box-shadow);
+}
+.media .media-content .grid .media-card:hover {
+  cursor: pointer;
+}
+.media .media-content .grid .media-card iframe {
+  width: 100%;
+  height: 100%;
+  border: 2px solid var(--accent-clr);
+}
+.media .media-content .grid .media-card img {
+  width: 100%;
+  height: 100%;
 }
 
 .episodes-page header {
   display: flex;
   flex-direction: column;
-  height: 35vh;
+  height: 25vh;
   width: 100%;
-  border: 1px solid red;
+  padding: 18px;
+  background-color: var(--accent-clr);
+  border-bottom: 1px solid var(--base-clr);
+  box-shadow: var(--box-shadow);
+  z-index: 2;
 }
 .episodes-page header .info {
   height: 20vh;
   display: flex;
 }
 .episodes-page header .info .image-container {
-  width: 20%;
-  border: 1px solid red;
+  width: 10%;
   height: 100%;
 }
 .episodes-page header .info .image-container img {
-  height: 90%;
-  width: 50%;
+  height: 99%;
+  width: 99%;
+  box-shadow: var(--box-shadow);
 }
 .episodes-page header .info .tv-title {
   padding: 8px;
 }
+.episodes-page header .info .tv-title h2 {
+  transition: var(--transition);
+}
+.episodes-page header .info .tv-title h2:hover {
+  color: var(--primary-clr);
+  cursor: pointer;
+}
 .episodes-page header .seasons {
   height: 15vh;
-  border: 1px solid red;
   padding: 8px;
 }
 .episodes-page header .seasons .season-numbers {
   height: 10vh;
-  border: 1px solid red;
-  padding: 8px;
+  display: flex;
+  align-items: center;
+}
+.episodes-page header .seasons .season-numbers .season-btn {
+  border-radius: var(--border-radius);
+  border: none;
+  background: var(--base-clr);
+  color: var(--white-text);
+  width: 44px;
+  height: 44px;
+  font-size: 18px;
 }
 .episodes-page .episodes {
   min-height: 70vh;
-  border: 1px solid red;
+  background-color: var(--accent-clr);
+  padding: 4px;
+  box-shadow: 0 10px 12px 4px var(--accent-shadow);
+  z-index: 1;
 }
 .episodes-page .episodes .episode {
-  height: 10vh;
-  border: 1px solid red;
+  height: 25vh;
+  margin: 8px;
+  border: 1px solid var(--base-clr);
+  box-shadow: 0 2px 4px 1px var(--base-clr);
+  display: flex;
+}
+.episodes-page .episodes .episode:hover {
+  cursor: pointer;
+}
+.episodes-page .episodes .episode .image-container {
+  max-width: 30%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.episodes-page .episodes .episode .image-container img {
+  min-height: 90%;
+  min-width: 90%;
+  transition: var(--transition);
+}
+.episodes-page .episodes .episode .image-container img:hover {
+  filter: grayscale(30%);
+}
+.episodes-page .episodes .episode .episode-info {
+  padding: 18px;
+}
+.episodes-page .episodes .episode .episode-info h3 {
+  display: flex;
+  align-items: center;
+}
+.episodes-page .episodes .episode .episode-info h3 svg {
+  margin-left: 4px;
+  color: #ffcd3c;
 }
 
 @media only screen and (max-width: 500px) {
@@ -683,24 +884,31 @@ footer {
     margin-top: 7vh;
     min-height: 90vh;
   }
-  .data-container .heading {
+  .movie-hero .data-container {
+    min-height: 90vh;
+    height: auto;
+  }
+  .movie-hero .data-container .heading {
     font-size: 0.8rem;
   }
-  .data-container .heading h1 {
+  .movie-hero .data-container .heading h1 {
     margin-right: 8px;
   }
-  .data-container .heading .rating {
+  .movie-hero .data-container .heading .rating {
     margin-left: 8px;
   }
-  .data-container .heading .rating span {
+  .movie-hero .data-container .heading .rating span {
     font-size: 0.7rem;
   }
-  .data-container .media-center {
+  .movie-hero .data-container .media-center {
     height: auto;
     flex-direction: column;
     align-items: center;
   }
-  .data-container .media-center .mobile-play-button {
+  .movie-hero .data-container .media-center .gallery-links {
+    display: none !important;
+  }
+  .movie-hero .data-container .media-center .mobile-play-button {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -713,39 +921,36 @@ footer {
     background-color: var(--accent-clr);
     transition: var(--transition);
   }
-  .data-container .media-center .mobile-play-button svg {
+  .movie-hero .data-container .media-center .mobile-play-button svg {
     margin-left: 4px;
     height: 2em;
     width: 3em;
   }
-  .data-container .media-center .mobile-play-button:hover {
+  .movie-hero .data-container .media-center .mobile-play-button:hover {
     opacity: 0.9;
     cursor: pointer;
   }
-  .data-container .media-center .mobile-play-button:hover svg {
+  .movie-hero .data-container .media-center .mobile-play-button:hover svg {
     color: var(--primary-clr);
   }
-  .data-container .media-center img {
+  .movie-hero .data-container .media-center img {
     margin: 4px;
     width: 80%;
     height: 80%;
   }
-  .data-container .media-center iframe {
+  .movie-hero .data-container .media-center iframe {
     display: none;
   }
-  .data-container .media-center .gallery-links {
-    display: none;
-  }
-  .data-container .info .genres {
+  .movie-hero .data-container .info .genres {
     flex-wrap: wrap;
     padding: 0 44px 0 44px;
   }
-  .data-container .info .genres .genre {
+  .movie-hero .data-container .info .genres .genre {
     font-size: 14px;
     min-width: 74px;
     border: 1px solid var(--white-text);
   }
-  .data-container .info .review {
+  .movie-hero .data-container .info .review {
     font-size: 15px;
   }
 }
@@ -760,6 +965,7 @@ footer {
   --border-radius: 1rem;
   --white-text: rgb(226, 223, 223);
   --box-shadow: 0 0 12px 4px var(--accent-shadow);
+  --text-shadow: black 2px 0 2px ;
   --transition: all 0.3s linear;
 }
 
@@ -774,12 +980,20 @@ html {
   scroll-behavior: smooth;
 }
 
+::-webkit-scrollbar-track {
+  background: var(--base-clr);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--accent-clr);
+}
+
 body {
   background-color: var(--base-clr);
   color: var(--white-text);
   overflow-x: hidden !important;
   font-family: sans-serif;
-  text-shadow: 0 0 12px var(--accent-shadow);
+  text-shadow: var(--text-shadow);
 }
 
 main {
