@@ -4,6 +4,7 @@ import { getData, getSearchResult } from "../api/TMDB";
 import Card from "../components/Card";
 import Spinner from "../components/Spinner";
 import Pagination from "../components/Pagination";
+import FilterBar from "../components/FilterBar";
 
 const Collection = ({ type }) => {
   const [data, setData] = useState([]);
@@ -49,6 +50,7 @@ const Collection = ({ type }) => {
   }, [pathname, page]);
   return (
     <main>
+      {/* <FilterBar/> */}
       {isLoading ? (
         <Spinner />
       ) : error ? (
@@ -74,7 +76,7 @@ const Collection = ({ type }) => {
               );
             })}
           </section>
-          <Pagination setPage={setPage} page={page} />
+          <Pagination setPage={setPage} page={page} length={data.length}/>
         </>
       )}
     </main>

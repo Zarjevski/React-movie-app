@@ -28,7 +28,7 @@ const Slider = ({ data, heading, path, type }) => {
     <div className="container">
       <h1 onClick={()=> navigate(path)}>{heading}<MdKeyboardDoubleArrowLeft/></h1>
       <div className="slider" style={{ transform: `translateX(${precent}%)` }}>
-        {data.map((card, i) => {
+        {data.length > 1 ? data.map((card, i) => {
           return (
             <Card
               imgSrc={card ? card.poster_path : null}
@@ -38,7 +38,7 @@ const Slider = ({ data, heading, path, type }) => {
               type={type}
             />
           );
-        })}
+        }) : <h1>אין מידע להצגה</h1>}
       </div>
       <div className="overlay">
         <button onClick={() => buttonFunctions.backward()}>

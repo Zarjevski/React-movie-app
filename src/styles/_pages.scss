@@ -214,6 +214,27 @@
   }
 }
 
+.filter-bar {
+  width: 100vw;
+  height: 8vh;
+  border-bottom: 1px solid var(--accent-clr);
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  h1 {
+    margin-right: 20%;
+    display: flex;
+    transition: var(--transition);
+    &:hover {
+      cursor: pointer;
+      color: var(--primary-clr);
+    }
+    svg {
+      margin-top: 4px;
+    }
+  }
+}
+
 // ==========
 // Media Page
 // =========
@@ -386,6 +407,9 @@
     width: 100%;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+  }
+  .filter-bar {
+    margin-top: 8vh;
   }
 
   // movie page

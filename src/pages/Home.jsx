@@ -25,11 +25,11 @@ const Home = () => {
   }, []);
   return (
     <main>
+      <Modal/>
       {isLoading ? (
         <Spinner />
       ) : (
         <div className="wrapper">
-          <Modal/>
           <Slideshow />
           <Slider
             data={popularMovies}

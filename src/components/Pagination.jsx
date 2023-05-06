@@ -1,7 +1,7 @@
 import React from "react";
 import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
 
-const Pagination = ({ setPage, page }) => {
+const Pagination = ({ setPage, page, length }) => {
   const pages = [page - 2,page - 1, page, page + 1, page + 2];
   const buttonFunctions = {
     next: () => {
@@ -17,6 +17,9 @@ const Pagination = ({ setPage, page }) => {
       });
     },
   };
+  const maxPage = length / 20;
+  console.log(maxPage);
+  console.log(length);
   return (
     <div className="pagination">
       <button onClick={() => buttonFunctions.prev()}>

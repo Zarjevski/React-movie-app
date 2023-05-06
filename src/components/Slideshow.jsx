@@ -13,7 +13,6 @@ const Slideshow = () => {
   const [trailer, setTrailer] = useState("");
   const image = getPoster(movies[movieIndex]?.backdrop_path);
   const type = "movie";
-  let id = ""
   const navigate = useNavigate();
   const { displayModal } = useModalContext();
   const fetchMovies = async () => {
@@ -28,10 +27,11 @@ const Slideshow = () => {
   };
   const getTrailer = async () => {
     try {
-      id = movies[movieIndex].id
+      const id = movies[movieIndex].id
       console.log(id);
       setTrailer(await getVideos(id, type));
     } catch (error) {
+      setError(true)
       console.log(error);
     }
   };
@@ -42,16 +42,18 @@ const Slideshow = () => {
     getTrailer();
   }, [movieIndex]);
   useEffect(() => {
-    const increaseIndex = setTimeout(() => {
-      setMovieIndex((prevIndex) => {
-        if (prevIndex === 4) {
-          return (prevIndex = 0);
-        } else {
-          return prevIndex + 1;
-        }
-      });
-    }, 15000);
-    return () => clearTimeout(increaseIndex);
+    if(smallArray.length > 1) {
+      const increaseIndex = setTimeout(() => {
+        setMovieIndex((prevIndex) => {
+          if (prevIndex === 4) {
+            return (prevIndex = 0);
+          } else {
+            return prevIndex + 1;
+          }
+        });
+      }, 15000);
+      return () => clearTimeout(increaseIndex);
+    }
   }, [movieIndex]);
   // button functions
   const buttonFunctions = {
@@ -79,7 +81,7 @@ const Slideshow = () => {
     <div className="slideshow">
       {isLoading ? (
         <Skeleton height={"100%"} width={"100%"} />
-      ) : error ? (
+      ) : error || smallArray.length < 1 ? (
         <h1>there is an error</h1>
       ) : (
         <>

@@ -45,7 +45,7 @@ export const getSearchResult = async (search, page) => {
     });
     const movieResults = await movieResponse.data.results;
     const tvResults = await tvResponse.data.results;
-    return [...movieResults, ...tvResults];
+    return movieResults;
   } catch (error) {
     console.error(error);
   }

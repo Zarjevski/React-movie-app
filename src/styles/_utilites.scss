@@ -159,6 +159,7 @@
     }
 }
 
+// small screen
 
 @media only screen and (max-width: 500px) {
   .pagination {
@@ -169,6 +170,12 @@
         height: 1.2em;
         width: 1.2em;
       }
+    }
+  }
+  .modal-overlay {
+    iframe {
+      width: 90vw;
+      height: 30vh;
     }
   }
 }

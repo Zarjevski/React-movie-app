@@ -1,0 +1,18 @@
+[
+    {
+        "name": "פופולרים",
+        "query-key": "popularity.desc"
+    },
+    {
+        "name": "חדשים",
+        "query-key": "popularity.desc"
+    },
+    {
+        "name": "פופולרים",
+        "query-key": "popularity.desc"
+    },
+    {
+        "name": "פופולרים",
+        "query-key": "popularity.desc"
+    }
+]
