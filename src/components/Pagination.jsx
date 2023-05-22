@@ -17,9 +17,7 @@ const Pagination = ({ setPage, page, length }) => {
       });
     },
   };
-  const maxPage = length / 20;
-  console.log(maxPage);
-  console.log(length);
+  const maxPage = length ? length / 20 : null;
   return (
     <div className="pagination">
       <button onClick={() => buttonFunctions.prev()}>

@@ -4,7 +4,7 @@ import { getData, getSearchResult } from "../api/TMDB";
 import Card from "../components/Card";
 import Spinner from "../components/Spinner";
 import Pagination from "../components/Pagination";
-import FilterBar from "../components/FilterBar";
+// import FilterBar from "../components/FilterBar";
 
 const Collection = ({ type }) => {
   const [data, setData] = useState([]);
@@ -47,15 +47,16 @@ const Collection = ({ type }) => {
         }
       })();
     }
-  }, [pathname, page]);
+  }, [pathname, page, search, type]);
+  console.log(data);
   return (
     <main>
       {/* <FilterBar/> */}
       {isLoading ? (
         <Spinner />
-      ) : error ? (
+      ) : error || data === undefined ? (
         <h1>קיימת שגיאה</h1>
-      ) : data.length < 1 ? (
+      ) : data.length === 0 ? (
         <>
           <h1>לא נמצאו תוצאות</h1>
           <button className="no-result-btn" onClick={()=> navigate(-1)}>חזרה</button>
@@ -76,7 +77,7 @@ const Collection = ({ type }) => {
               );
             })}
           </section>
-          <Pagination setPage={setPage} page={page} length={data.length}/>
+          <Pagination setPage={setPage} page={page} length={data.length < 1 ? data.length : 0}/>
         </>
       )}
     </main>

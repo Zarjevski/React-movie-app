@@ -15,10 +15,11 @@ const Slideshow = () => {
   const type = "movie";
   const navigate = useNavigate();
   const { displayModal } = useModalContext();
+  let smallArray = []
   const fetchMovies = async () => {
     try {
       const moviesData = await getData("/movie/popular");
-      const smallArray = await moviesData.slice(0, 5);
+      smallArray = await moviesData.slice(0, 5);
       setMovies(smallArray);
       setIsLoading(false);
     } catch (error) {
@@ -38,9 +39,9 @@ const Slideshow = () => {
   useEffect(() => {
     fetchMovies();
   }, []);
-  useEffect(() => {
-    getTrailer();
-  }, [movieIndex]);
+  // useEffect(() => {
+  //   getTrailer();
+  // }, [movieIndex]);
   useEffect(() => {
     if(smallArray.length > 1) {
       const increaseIndex = setTimeout(() => {

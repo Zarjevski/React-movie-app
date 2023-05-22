@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 const Slider = ({ data, heading, path, type }) => {
   const [precent, setPrecent] = useState(0);
   const navigate = useNavigate()
-  const maxPrecent = data.length / 5 * 100;
+  const maxPrecent = data?.length / 5 * 100;
   const buttonFunctions = {
     forward: () => {
       if (precent === maxPrecent - 100) {
@@ -28,7 +28,7 @@ const Slider = ({ data, heading, path, type }) => {
     <div className="container">
       <h1 onClick={()=> navigate(path)}>{heading}<MdKeyboardDoubleArrowLeft/></h1>
       <div className="slider" style={{ transform: `translateX(${precent}%)` }}>
-        {data.length > 1 ? data.map((card, i) => {
+        {data ? data.map((card, i) => {
           return (
             <Card
               imgSrc={card ? card.poster_path : null}
