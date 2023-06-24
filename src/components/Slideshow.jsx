@@ -82,7 +82,7 @@ const Slideshow = () => {
     <div className="slideshow">
       {isLoading ? (
         <Skeleton height={"100%"} width={"100%"} />
-      ) : error || smallArray.length < 1 ? (
+      ) : error || smallArray.length > 1 ? (
         <h1>there is an error</h1>
       ) : (
         <>
