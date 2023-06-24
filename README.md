@@ -1,6 +1,6 @@
 ![website photo](https://github.com/Zarjevski/React-movie-app/tree/main/src/assets/website.png)
 
-### Live Demo: 
+### Live Demo: https://superb-croquembouche-a9c6c2.netlify.app/
 
 # React Movie App
 
