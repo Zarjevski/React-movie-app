@@ -1,0 +1,29 @@
+.no-data {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  .reel-icon {
+    height: 6rem;
+    width: 6rem;
+    margin-bottom: 12px;
+  }
+  h1 {
+    margin-bottom: 12px;
+  }
+  button {
+    background: var(--accent-clr);
+    border: 1px solid var(--border-clr);
+    height: 42px;
+    width: 84px;
+    font-size: 16px;
+    border-radius: var(--border-radius);
+    color: white;
+    margin: 12px 12px 0 12px;
+    cursor: pointer;
+    &:hover {
+      color: var(--base-clr);
+      background: var(--primary-clr);
+    }
+  }
+}

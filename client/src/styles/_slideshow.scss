@@ -1,0 +1,104 @@
+.slideshow {
+  height: 80vh;
+  width: 100%;
+  position: relative;
+  .image-container {
+    height: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    align-items: end;
+    z-index: 2;
+    justify-content: center;
+    box-shadow: inset 0 0px 15px 10px var(--accent-shadow);
+    transition: all 0.8s ease-in;
+    button {
+      background: var(--accent-clr);
+      border: 1px solid var(--accent-clr);
+      font-weight: bold;
+      padding: 12px 18px 12px 18px;
+      border-radius: var(--border-radius);
+      color: white;
+      font-size: 21px;
+      margin: 0 18px 48px 18px;
+      transition: all 0.3s linear;
+      cursor: pointer;
+      box-shadow: 0 0 12px var(--accent-shadow);
+      z-index: 4;
+      &:hover {
+        color: var(--base-clr);
+        background: var(--primary-clr);
+      }
+    }
+  }
+  .slideshow-overlay {
+    width: 100%;
+    height: 100%;
+    background: rgb(28, 32, 37);
+    background: linear-gradient(
+      90deg,
+      rgba(28, 32, 37, 0.9500175070028011) 0%,
+      rgba(38, 43, 49, 0) 50%,
+      rgba(28, 32, 37, 0.9528186274509804) 100%
+    );
+    position: absolute;
+    z-index: 3;
+    top: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.8s ease-in;
+    .movie-logo {
+      margin-top: 10%;
+      max-width: 480px;
+      height: fit-content;
+    }
+    button {
+        background: var(--accent-clr);
+        opacity: 0.2;
+        width: 4%;
+        height: 100%;
+        border: none;
+        &:hover {
+          opacity: 0.7;
+          svg {
+            color: var(--primary-clr);
+          }
+        }
+        svg {
+          height: 3em;
+          width: 3em;
+          color: var(--white-text);
+        }
+    }
+  }
+}
+
+
+@media only screen and (max-width: 500px) {
+  .slideshow{
+    margin-top: 7vh;
+    .image-container {
+      button {
+        font-size: 14px;
+        border: 1px solid var(--border-clr);
+      }
+    }
+    .slideshow-overlay {
+      .movie-logo {
+        margin-top: 30%;
+        max-width: 280px;
+        height: fit-content;
+      }
+      button {
+        width: 10%;
+        opacity: 0.1;
+        svg {
+          height: 2em;
+          width: 2em;
+        }
+      }
+    }
+  }
+}

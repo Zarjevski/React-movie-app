@@ -1,0 +1,135 @@
+nav {
+  height: 7vh;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  border-bottom: 1px solid var(--border-clr);
+  background-color: var(--accent-clr);
+  box-shadow: 0 4px 6px var(--accent-shadow);
+  backdrop-filter: blur(12px);
+  z-index: 10;
+  position: relative;
+  .logo-conatiner {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    .logo {
+      height: 30px;
+      cursor: pointer;
+    }
+  }
+  .mobile-search {
+    display: none;
+  }
+  ul {
+    display: flex;
+    width: 50%;
+    justify-content: center;
+    list-style: none;
+    a {
+      text-decoration: none;
+      color: white;
+      font-size: 21px;
+      padding: 12px;
+      &:hover {
+        color: var(--primary-clr);
+      }
+    }
+  }
+  .hamburger,
+  .close {
+    display: none;
+  }
+  .list-search {
+    display: none;
+  }
+}
+
+.search-bar {
+  width: fit-content;
+  .search {
+    background-color: var(--border-clr);
+    border: 1px solid var(--border-clr);
+    display: flex;
+    input {
+      padding: 6px;
+      background-color: var(--base-clr);
+      outline: none;
+      border: 1px solid var(--border-clr);
+      color: white;
+      font-size: 18px;
+      border-top-right-radius: var(--border-radius);
+      border-bottom-right-radius: var(--border-radius);
+    }
+  }
+  .search-icon {
+    background-color: var(--border-clr);
+    padding: 4px 8px 4px 8px;
+    border: none;
+    border-top-left-radius: var(--border-radius);
+    border-bottom-left-radius: var(--border-radius);
+    svg {
+      color: white;
+      height: 1.5rem;
+      width: 1.5rem;
+    }
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  nav {
+    width: 100%;
+    min-height: 7vh;
+    height: auto;
+    position: fixed;
+    flex-direction: column;
+    .logo-conatiner {
+      padding-top: 10px;
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      align-items: center;
+      cursor: pointer;
+      .hamburger,
+      .close {
+        height: 2.5em;
+        width: 2.5em;
+        margin: 0 12px 0 18px;
+        display: block;
+        color: var(--white-text);
+      }
+    }
+    .mobile-search {
+      display: block;
+      margin: 0 12px 0 12px;
+      height: 2em;
+      width: 2em;
+    }
+    ul {
+      background-color: var(--base-clr);
+      margin-top: 12px;
+      width: 100%;
+      height: auto;
+      flex-direction: column;
+      align-items: center;
+      display: none;
+      a {
+        text-align: center;
+        width: 100%;
+        font-size: 18px;
+        &:hover {
+          background-color: var(--on-surface);
+        }
+      }
+    }
+    .search-bar {
+      background-color: var(--base-clr);
+      width: 100%;
+      display: none;
+      input {
+        width: 100%;
+      }
+    }
+  }
+}
